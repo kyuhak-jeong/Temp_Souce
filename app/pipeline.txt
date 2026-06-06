@@ -1,0 +1,3 @@
+video_path=/home/cong/dev/Projects/linux/
+video_file_name=test.mp4
+video_channels=0123

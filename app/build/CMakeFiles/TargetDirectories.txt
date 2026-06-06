@@ -1,0 +1,9 @@
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/CMakeFiles/SafeView_R2.1.0H9.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/CMakeFiles/edit_cache.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/CMakeFiles/rebuild_cache.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/rknn_helper_build/CMakeFiles/RknnHelper.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/rknn_helper_build/CMakeFiles/edit_cache.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/rknn_helper_build/CMakeFiles/rebuild_cache.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/object_detection_build/CMakeFiles/ObjectDetection.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/object_detection_build/CMakeFiles/edit_cache.dir
+/home/kyuhak/Workspace/App/workspace/SafeView/4ch_DVR/app/build/object_detection_build/CMakeFiles/rebuild_cache.dir

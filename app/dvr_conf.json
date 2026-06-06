@@ -1,0 +1,36 @@
+{
+    "CameraMonitoringSystem": {
+        "DVR_Link": {
+            "recordingTime": 60,
+            "recordingChannel": 0,
+            "recordingFpsAvm": 30,
+            "recordingFpsInternal": 30
+        },
+        "DVR_Internal": {
+            "storageDev": "/dev/nvme0n1p5",
+            "eventDirName": "Event",
+            "normalDirName": "Normal",
+            "parkingDirName": "Parking",
+            "maxSizeOfNormalFolder": 1000,
+            "maxSizeOfEventFolder": 1000,
+            "maxSizeOfParkingFolder": 1000,
+            "vibrationLevel": 1,
+            "isParkingMode": false,
+            "recordingTimePreEvent": 10,
+            "recordingTimeTotalEvent": 30,
+            "recordingFpsParking": 5,
+            "recordingWidth": 1920,
+            "recordingHeight": 1080,
+            "recordingWidthInternal": 1280,
+            "recordingHeightInternal": 720
+        },
+        "DVR_Audio": {
+            "audioEnabled": false,
+            "audioDevice": "hw:0,0",
+            "audioSampleRate": 44100,
+            "audioChannels": 1,
+            "audioBitDepth": 16,
+            "audioBitrate": 128000
+        }
+    }
+}

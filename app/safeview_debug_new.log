@@ -1,0 +1,573 @@
+=== 24-HOUR DEBUGGING START: Sat Jun  6 11:55:21 UTC 2026 ===
+Start Epoch: 1780746921, Target End Epoch: 1781092521
+--- Launching SafeView under GDB (Restart Count: 0, Remaining Time: s) at Sat Jun  6 11:55:21 UTC 2026 ---
+gdb: warning: Couldn't determine a path for the index cache directory.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[Detaching after vfork from child process 2483038]
+[Detaching after vfork from child process 2483039]
+[H[J
+========================================APP START=================================================
+Use camera!!! video_channels: 0123
+[Detaching after vfork from child process 2483040]
+[New Thread 0x7ff3ffeb60 (LWP 2483042)]
+[New Thread 0x7ff37eeb60 (LWP 2483043)]
+[New Thread 0x7ff2fdeb60 (LWP 2483044)]
+[New Thread 0x7ff27ceb60 (LWP 2483045)]
+[New Thread 0x7ff1fbeb60 (LWP 2483046)]
+[New Thread 0x7ff17aeb60 (LWP 2483047)]
+[New Thread 0x7ff0f9eb60 (LWP 2483049)]
+[New Thread 0x7ff078eb60 (LWP 2483050)]
+[Detaching after vfork from child process 2483048]
+[Detaching after vfork from child process 2483051]
+sh: line 1: echo: write error: Device or resource busy
+sh: line 1: echo: write error: Device or resource busy
+[1;37m[DVR][0m [37mINFO[0m Configuration loaded from: dvr_conf.json
+[1;37m[APP][0m [37mINFO[0m AppConf: loaded 'app_conf.json'
+ [0m┌─────────────────────────────────────────────────────────────────┐
+ [0m│ DVR Configuration                                              [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ Storage                                                        [0m │
+ [0m│   Device: /dev/nvme0n1p1                                       [0m │
+ [0m│   Path  : /mnt/udisk                                           [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ Recording Modes          Normal      Event       Parking       [0m │
+ [0m│   Folder Name            Normal      Event       Parking       [0m │
+ [0m│   Max Size (MB)          10000       10000       10000         [0m │
+ [0m│   Recording Time (s)     60          10+20       60            [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ FPS Settings             AVM         Internal    Parking       [0m │
+ [0m│   Frames Per Second      30          30          5             [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ Resolution Settings      AVM         Internal                  [0m │
+ [0m│   Source (camera)        1920x1080   1920x1080                 [0m │
+ [0m│   Recording              1920x1080   1280x720                  [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ Audio Settings                                                 [0m │
+ [0m│   Enabled              : Yes                                   [0m │
+ [0m│   Device               : hw:0,0                                [0m │
+ [0m│   Sample Rate          : 44100 Hz                              [0m │
+ [0m│   Channels             : Stereo                                [0m │
+ [0m│   Bit Depth            : 16-bit                                [0m │
+ [0m│   AAC Bitrate          : 256 kbps                              [0m │
+ [0m├─────────────────────────────────────────────────────────────────┤
+ [0m│ System Settings                                                [0m │
+ [0m│   Recording Channels   : 4                                     [0m │
+ [0m│   Parking Mode         : Inactive                              [0m │
+ [0m│   Vibration Level      : 1                                     [0m │
+ [0m└─────────────────────────────────────────────────────────────────┘
+
+
+[1;37m[APP][0m [1;36m=== Initializing Display with io_platform ===[0m
+gpio108 already initialize.
+gpio109 already initialize.
+gpio110 already initialize.
+gpio111 already initialize.
+
+------------------GPIO Taxi Task Started------------------
+
+[1;37m[IO][0m [1;36m=== Display Initialization ===[0m
+[1;37m[IO][0m [1;32mOK[0m Using /dev/dri/card0
+[1[New Thread 0x7fefe89b60 (LWP 2483053)]
+[New Thread 0x7fef679b60 (LWP 2483054)]
+[New Thread 0x7feee69b60 (LWP 2483055)]
+[New Thread 0x7fee659b60 (LWP 2483056)]
+[New Thread 0x7fede49b60 (LWP 2483057)]
+[New Thread 0x7fed639b60 (LWP 2483058)]
+[New Thread 0x7fece29b60 (LWP 2483059)]
+[New Thread 0x7fe7ffeb60 (LWP 2483060)]
+[New Thread 0x7fe77eeb60 (LWP 2483061)]
+[New Thread 0x7fe6fdeb60 (LWP 2483062)]
+[New Thread 0x7fe67ceb60 (LWP 2483063)]
+[New Thread 0x7fe5fbeb60 (LWP 2483064)]
+[New Thread 0x7fe57aeb60 (LWP 2483065)]
+[Detaching after vfork from child process 2483066]
+;37m[IO][0m [1;32mOK[0m Connector card0-HDMI-A-1: 1920x1080@60Hz (CRTC 72)
+arm_release_ver: g13p0-01eac0, rk_so_ver: 11
+[1;37m[IO][0m [1;32mOK[0m EGL 1.4 initialized
+[1;37m[IO][0m [1;32mOK[0m EGL contexts created
+[1;37m[IO][0m [1;32mOK[0m GStreamer GL context initialized
+[1;37m[IO][0m [36mDEBUG[0m Display size set to 1920x1080, mouse initialized to (960.0, 540.0)
+[1;37m[IO][0m [37mINFO[0m InputReader configured for display: 1920x1080 (requested: 1920x1080)
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [1;32mOK[0m DRM input initialized (0 devices)
+[1;37m[IO][0m [36mDEBUG[0m stdin is not a terminal, terminal input disabled
+ [0m┌──────────────────────────────────────────────────────────────────────┐
+ [0m│ Platform: DRM/KMS                                                   [0m │
+ [0m├──────────────────────────────────────────────────────────────────────┤
+ [0m│ Available Displays:                                                 [0m │
+ [0m│   [1;32mcard0-HDMI-A-1: 1920x1080@60Hz [ACTIVE][0m                           [0m │
+ [0m│   [2mcard0-DP-1: Disconnected[0m                                          [0m │
+ [0m├──────────────────────────────────────────────────────────────────────┤
+ [0m│ Input Devices: 0 connected                                          [0m │
+ [0m│   No input devices detected                                         [0m │
+ [0m└──────────────────────────────────────────────────────────────────────┘
+
+[1;37m[APP][0m [1;32mOK[0m io_platform initialized successfully
+[1;37m[APP][0m [37mINFO[0m Display size: 1920x1080
+[1;37m[IO][0m [37mINFO[0m GL context now current on thread 8360720896162430489
+------------------Initialize GPIO done------------------
+[1;37m[APP][0m [1;32mOK[0m mainGLCanvas initialized
+Loaded collection 'ui' with 70 textures
+[1;37m[IO][0m [37mINFO[0m GL context released - available for any thread
+
+************************GST_CAMERA_PROCESS************************
+
+------------------Init_AI_Detector------------------
+[New Thread 0x7fe4f58b60 (LWP 2483067)]
+[New Thread 0x7fc9b03b60 (LWP 2483068)]
+[New Thread 0x7fc92f3b60 (LWP 2483069)]
+[New Thread 0x7fc8ae3b60 (LWP 2483070)]
+[RKNN Context 0] Using NPU Core 0
+[RKNN Context 0] Successfully set core mask
+[RKNN Context 1] Using NPU Core 1
+[RKNN Context 1] Successfully set core mask
+[RKNN Context 2] Using NPU Core 0
+[RKNN Context 2] Successfully set core mask
+[RKNN Context 3] Using NPU Core 1
+[RKNN Context 3] Successfully set core mask
+------------------Init_AI_Detector_done------------------
+[New Thread 0x7fb7ffeb60 (LWP 2483071)]
+[New Thread 0x7fb77eeb60 (LWP 2483072)]
+
+************************AICAM_UI_PROCESS************************
+
+[1;37m[APP][0m [1;36m=== Entering main loop ===[0m
+
+[1;37m[APP][0m [1;36m=== AICam UI Thread Starting ===[0m
+[1;37m[IO][0m [37mINFO[0m GL context now current on thread 7865660434770176322
+
+[1;37m[APP][0m [1;36m=== AppBase: Initializing ===[0m
+[1;37m[APP][0m [37mINFO[0m AppBase: Initializing FontManager...
+[1;37m[APP][0m [1;32mOK[0m AppBase: FontManager initialized
+
+[1;37m[GST][0m [1;36m=== GstCamera Pipeline ===[0m
+[32mgst-launch-1.0 
+v4l2src device=/dev/video0 io-mode=dmabuf ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! tee name=t0 
+v4l2src device=/dev/video1 io-mode=dmabuf ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! tee name=t1 
+v4l2src device=/dev/video2 io-mode=dmabuf ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! tee name=t2 
+v4l2src device=/dev/video3 io-mode=dmabuf ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! tee name=t3 
+t0. ! queue ! glupload ! glcolorconvert ! video/x-raw(memory:GLMemory),format=RGB ! appsink name=gl_sink0 
+t1. ! queue ! glupload ! glcolorconvert ! video/x-raw(memory:GLMemory),format=RGB ! appsink name=gl_sink1 
+t2. ! queue ! glupload ! glcolorconvert ! video/x-raw(memory:GLMemory),format=RGB ! appsink name=gl_sink2 
+t3. ! queue ! glupload ! glcolorconvert ! video/x-raw(memory:GLMemory),format=RGB ! appsink name=gl_sink3 
+t0. ! queue ! rgaconvert ! video/x-raw,format=RGB,width=416,height=416 ! appsink name=mod_sink0 
+t1. ! queue ! rgaconvert ! video/x-raw,format=RGB,width=416,height=416 ! appsink name=mod_sink1 
+t2. ! queue ! rgaconvert ! video/x-raw,format=RGB,width=416,height=416 ! appsink name=mod_sink2 
+t3. ! queue ! rgaconvert ! video/x-raw,format=RGB,width=416,height=416 ! appsink name=mod_sink3 
+t0. ! queue ! videorate name=rate0 drop-only=true ! capsfilter name=capsfilt0 caps=video/x-raw,framerate=30/1
+ ! mpph265enc name=encoder0 bps=4000000 bps-min=3600000 bps-max=4800000 gop=30 rc-mode=1 qp-min=10 qp-max=51 header-mode=1 ! h265parse ! video/x-h265,stream-format=hvc1,alignment=au ! appsink name=dvr_sink0 
+t1. ! queue ! videorate name=rate1 drop-only=true ! capsfilter name=capsfilt1 caps=video/x-raw,framerate=30/1
+ ! mpph265enc name=encoder1 bps=4000000 bps-min=3600000 bps-max=4800000 gop=30 rc-mode=1 qp-min=10 qp-max=51 header-mode=1 ! h265parse ! video/x-h265,stream-format=hvc1,alignment=au ! appsink name=dvr_sink1 
+t2. ! queue ! videorate name=rate2 drop-only=true ! capsfilter name=capsfilt2 caps=video/x-raw,framerate=30/1
+ ! mpph265enc name=encoder2 bps=4000000 bps-min=3600000 bps-max=4800000 gop=30 rc-mode=1 qp-min=10 qp-max=51 header-mode=1 ! h265parse ! video/x-h265,stream-format=hvc1,alignment=au ! appsink name=dvr_sink2 
+t3. ! queue ! videorate name=rate3 drop-only=true ! capsfilter name=capsfilt3 caps=video/x-raw,framerate=30/1
+ ! mpph265enc name=encoder3 bps=4000000 bps-min=3600000 bps-max=4800000 gop=30 rc-mode=1 qp-min=10 qp-max=51 header-mode=1 ! h265parse ! video/x-h265,stream-format=hvc1,alignment=au ! appsink name=dvr_sink3 
+alsasrc device=hw:0,0 ! audio/x-raw,format=S16LE,rate=44100,channels=2,layout=interleaved ! queue ! audioconvert ! audiowsinclimit name=am_hp mode=high-pass cutoff=80 ! audiowsinclimit name=am_lp mode=low-pass cutoff=4000 ! audiodynamic characteristics=hard-knee mode=compressor threshold=0.15 ratio=3.0 ! volume name=am_vol volume=4.0 ! audioresample ! avenc_aac bitrate=256000 ! aacparse ! audio/mpeg,mpegversion=4,stream-format=raw ! appsink name=am_sink 
+[0m
+[1;37m[APP][0m [1;32mOK[0m AppBase: Loaded 1 font(s)
+
+[1;37m[APP][0m [1;36m=== AppShell: Initializing ===[0m
+[1;37m[IO][0m [37mINFO[0m Display power timeout set to 0 seconds (mode: black-frame)
+[1;37m[APP][0m [37mINFO[0m AppShell: Loading textures
+Loaded collection 'ui' with 70 textures
+[New Thread 0x7fb6a5eb60 (LWP 2483073)]
+[Thread 0x7fb6a5eb60 (LWP 2483073) exited]
+[New Thread 0x7fb6a5eb60 (LWP 2483074)]
+[Thread 0x7fb6a5eb60 (LWP 2483074) exited]
+[New Thread 0x7fb6a5eb60 (LWP 2483075)]
+[Thread 0x7fb6a5eb60 (LWP 2483075) exited]
+[New Thread 0x7fb6a5eb60 (LWP 2483076)]
+[New Thread 0x7faef1eb60 (LWP 2483077)]
+[New Thread 0x7fae70eb60 (LWP 2483078)]
+[New Thread 0x7fadefeb60 (LWP 2483079)]
+[New Thread 0x7fad6eeb60 (LWP 2483080)]
+[New Thread 0x7facedeb60 (LWP 2483081)]
+[New Thread 0x7fa3ffeb60 (LWP 2483082)]
+[New Thread 0x7fa37eeb60 (LWP 2483083)]
+[New Thread 0x7fa2fdeb60 (LWP 2483084)]
+[New Thread 0x7fa27ceb60 (LWP 2483085)]
+[New Thread 0x7fa1fbeb60 (LWP 2483086)]
+[New Thread 0x7fa17aeb60 (LWP 2483087)]
+[New Thread 0x7fa0f9eb60 (LWP 2483088)]
+[New Thread 0x7f7fffeb60 (LWP 2483089)]
+[New Thread 0x7f7f7eeb60 (LWP 2483090)]
+[New Thread 0x7f7efdeb60 (LWP 2483091)]
+[New Thread 0x7f7e7ceb60 (LWP 2483092)]
+[New Thread 0x7f7dfbeb60 (LWP 2483093)]
+[New Thread 0x7f7d7aeb60 (LWP 2483094)]
+[New Thread 0x7f7cf9eb60 (LWP 2483095)]
+[New Thread 0x7f5fffeb60 (LWP 2483096)]
+[New Thread 0x7f5f7eeb60 (LWP 2483097)]
+[New Thread 0x7f5efdeb60 (LWP 2483098)]
+[New Thread 0x7f5e7ceb60 (LWP 2483099)]
+[New Thread 0x7f5dfbeb60 (LWP 2483141)]
+[New Thread 0x7f5d7aeb60 (LWP 2483142)]
+[New Thread 0x7f5cf9eb60 (LWP 2483143)]
+[New Thread 0x7f33ffeb60 (LWP 2483144)]
+[New Thread 0x7f337eeb60 (LWP 2483145)]
+[New Thread 0x7f32ce1b60 (LWP 2483147)]
+[New Thread 0x7f324d1b60 (LWP 2483148)]
+[New Thread 0x7f319c4b60 (LWP 2483149)]
+[New Thread 0x7f311b4b60 (LWP 2483150)]
+[New Thread 0x7f309a4b60 (LWP 2483151)]
+[New Thread 0x7f0fffeb60 (LWP 2483152)]
+[New Thread 0x7f0f7eeb60 (LWP 2483153)]
+[New Thread 0x7f0efdeb60 (LWP 2483154)]
+[New Thread 0x7f0e7ceb60 (LWP 2483155)]
+[New Thread 0x7f0dfbeb60 (LWP 2483156)]
+[New Thread 0x7f0d7aeb60 (LWP 2483157)]
+[New Thread 0x7f0cf9eb60 (LWP 2483158)]
+[New Thread 0x7eefffeb60 (LWP 2483159)]
+[1;37m[APP][0m [1;32mOK[0m AppShell: Textures loaded from: ../resources/textures/ui
+[1;37m[APP][0m [1;32mOK[0m AppShell: Status bar created
+[1;37m[APP][0m [37mINFO[0m AppTaxi: Setting up main screen content
+[1;37m[APP][0m [1;32mOK[0m AppTaxi: Main screen content setup complete
+[1;37m[APP][0m [1;32mOK[0m AppShell: Initialized successfully
+[1;37m[APP][0m [1;32mOK[0m AppBase: Initialized successfully
+[1;37m[APP][0m [1;32mOK[0m AppAICam initialized
+[1;37m[APP][0m [37mINFO[0m AiCam UI Thread: Entering main loop
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Using DvrManager (Base)
+[1;37m[DVR][0m [37mINFO[0m DvrManager created
+[1;37m[DVR][0m [37mINFO[0m Split mode: 1 files (4 channels per file)
+[1;37m[DVR][0m [37mINFO[0m Initialized with 1 files: Ch0:30fps, Ch1:30fps, Ch2:30fps, Ch3:30fps
+[1;37m[DVR][0m [37mINFO[0m Waiting for all channels (0/4 ready, timeout 8s)...
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+rga_api version 1.10.1_[6]
+[1;37m[DVR][0m [37mINFO[0m First frame: ch3 (1/4 channels ready)
+[1;37m[DVR][0m [37mINFO[0m First frame: ch0 (2/4 channels ready)
+[1;37m[DVR][0m [37mINFO[0m First frame: ch2 (3/4 channels ready)
+[1;37m[DVR][0m [37mINFO[0m First frame: ch1 (4/4 channels ready)
+[1;37m[DVR][0m [37mINFO[0m Starting NORMAL recording
+
+[1;37m[GST][0m [1;36m=== FileWriter Pipeline ===[0m
+[32mmp4mux name=mux fragment-duration=1000 ! filesink name=fsink location=/mnt/udisk/VideoFiles/Normal/N_260606_115526_#0_CH4_FR30_A.mp4 
+appsrc name=dvr_source0 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_0 
+appsrc name=dvr_source1 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_1 
+appsrc name=dvr_source2 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_2 
+appsrc name=dvr_source3 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_3 
+appsrc name=dvr_source1000 is-live=true do-timestamp=false format=time caps="text/x-raw,format=utf8" ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.subtitle_0 
+appsrc name=dvr_audio_src is-live=true do-timestamp=false format=time caps=audio/mpeg,mpegversion=4,stream-format=adts ! queue max-size-buffers=200 max-size-time=0 max-size-bytes=0 flush-on-eos=true ! mux.audio_0 
+[0m
+[1;37m[DVR][0m [37mINFO[0m [TIMING][NORMAL] gst_parse_launch: 31ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING][NORMAL] parser wait: 0ms (ready=yes)
+[1;37m[DVR][0m [37mINFO[0m Recording started [NORMAL]: /mnt/udisk/VideoFiles/Normal/N_260606_115526_#0_CH4_FR30_A.mp4
+[1;37m[DVR][0m [37mINFO[0m   Duration: 60s | Channels: Ch0:30fps, Ch1:30fps, Ch2:30fps, Ch3:30fps | Audio: yes
+[1;37m[DVR][0m [36mDEBUG[0m Anchor set: ch1 srcPts=0:00:01.992398385
+[1;37m[DVR][0m [36mDEBUG[0m Audio Anchor set: srcPts=0:00:01.987936507
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #0: srcPts=0:00:01.987936507 anchor(video)=0:00:01.992398385 filePts=0:00:00.000000000
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #1: srcPts=0:00:02.011156461 anchor(video)=0:00:01.992398385 filePts=0:00:00.023219954
+[1;37m[DVR][0m [36mDEBUG[0m Subtitle Anchor set: srcPts=0:00:02.041630409
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #2: srcPts=0:00:02.034376416 anchor(video)=0:00:01.992398385 filePts=0:00:00.046439909
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #3: srcPts=0:00:02.057596371 anchor(video)=0:00:01.992398385 filePts=0:00:00.069659864
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #4: srcPts=0:00:02.080816325 anchor(video)=0:00:01.992398385 filePts=0:00:00.092879818
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mW[New Thread 0x7eef7eeb60 (LWP 2483202)]
+[Detaching after vfork from child process 2483203]
+[Detaching after vfork from child process 2483205]
+[Thread 0x7eef7eeb60 (LWP 2483202) exited]
+[Detaching after vfork from child process 2483207]
+[Detaching after vfork from child process 2483208]
+[Thread 0x7eefffeb60 (LWP 2483159) exited]
+[New Thread 0x7eefffeb60 (LWP 2483297)]
+[Detaching after vfork from child process 2483298]
+[Detaching after vfork from child process 2483300]
+[Thread 0x7eefffeb60 (LWP 2483297) exited]
+[Detaching after vfork from child process 2483344]
+[Detaching after vfork from child process 2483345]
+[New Thread 0x7eefffeb60 (LWP 2483393)]
+[Detaching after vfork from child process 2483394]
+[Detaching after vfork from child process 2483396]
+[Thread 0x7eefffeb60 (LWP 2483393) exited]
+[New Thread 0x7eefffeb60 (LWP 2483398)]
+[New Thread 0x7eef7eeb60 (LWP 2483399)]
+[New Thread 0x7eeefdeb60 (LWP 2483400)]
+[New Thread 0x7eee7ceb60 (LWP 2483401)]
+[New Thread 0x7eedfbeb60 (LWP 2483402)]
+[New Thread 0x7eed7aeb60 (LWP 2483403)]
+[New Thread 0x7eecf9eb60 (LWP 2483404)]
+[New Thread 0x7ecfffeb60 (LWP 2483405)]
+[New Thread 0x7ecf7eeb60 (LWP 2483406)]
+[New Thread 0x7ecefdeb60 (LWP 2483407)]
+[New Thread 0x7ece7ceb60 (LWP 2483408)]
+[New Thread 0x7ecdfbeb60 (LWP 2483409)]
+[New Thread 0x7ecd7aeb60 (LWP 2483410)]
+ARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[DVR][0m [37mINFO[0m Dr.Safe PUA Activated
+
+[1;37m[GST][0m [1;36m=== FileWriter Pipeline ===[0m
+[32mmp4mux name=mux fragment-duration=1000 ! filesink name=fsink location=/mnt/udisk/VideoFiles/Event/PUA/E_260606_115554_CH4_FR30_A.mp4 
+appsrc name=dvr_source0 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_0 
+appsrc name=dvr_source1 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_1 
+appsrc name=dvr_source2 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_2 
+appsrc name=dvr_source3 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_3 
+appsrc name=dvr_source2000 is-live=true do-timestamp=false format=time caps="text/x-raw,format=utf8" ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.subtitle_0 
+appsrc name=dvr_audio_src is-live=true do-timestamp=false format=time caps=audio/mpeg,mpegversion=4,stream-format=adts ! queue max-size-buffers=200 max-size-time=0 max-size-bytes=0 flush-on-eos=true ! mux.audio_0 
+[0m
+[1;37m[DVR][0m [37mINFO[0m [TIMING][EVENT] gst_parse_launch: 1ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING] initialize: 1ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING][EVENT] parser wait: 0ms (ready=yes)
+[1;37m[DVR][0m [37mINFO[0m [95mRecording started [EVENT]: /mnt/udisk/VideoFiles/Event/PUA/E_260606_115554_CH4_FR30_A.mp4[0m
+[1;37m[DVR][0m [37mINFO[0m [95m  Duration: 10+20s | Channels: Ch0:30fps, Ch1:30fps, Ch2:30fps, Ch3:30fps | Audio: yes[0m
+[1;37m[DVR][0m [37mINFO[0m [TIMING] start: 21ms
+[1;37m[DVR][0m [36mDEBUG[0m Anchor set: ch2 srcPts=0:00:20.415459920
+[1;37m[DVR][0m [36mDEBUG[0m Audio Anchor set: srcPts=0:00:20.424580498
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #0: srcPts=0:00:20.424580498 anchor(video)=0:00:20.415459920 filePts=0:00:00.000000000
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #1: srcPts=0:00:20.447800452 anchor(video)=0:00:20.415459920 filePts=0:00:00.023219954
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #2: srcPts=0:00:20.471020407 anchor(video)=0:00:20.415459920 filePts=0:00:00.046439909
+[1;37m[DVR][0m [36mD[New Thread 0x7eccf9eb60 (LWP 2483411)]
+[Detaching after vfork from child process 2483456]
+[Detaching after vfork from child process 2483457]
+[New Thread 0x7ec3ffeb60 (LWP 2483502)]
+[Detaching after vfork from child process 2483503]
+[Detaching after vfork from child process 2483505]
+[Thread 0x7ec3ffeb60 (LWP 2483502) exited]
+[Detaching after vfork from child process 2483551]
+[Detaching after vfork from child process 2483552]
+[Thread 0x7eccf9eb60 (LWP 2483411) exited]
+[New Thread 0x7eccf9eb60 (LWP 2483598)]
+[Detaching after vfork from child process 2483599]
+[Detaching after vfork from child process 2483601]
+[Thread 0x7eccf9eb60 (LWP 2483598) exited]
+[Thread 0x7eeefdeb60 (LWP 2483400) exited]
+[Thread 0x7eed7aeb60 (LWP 2483403) exited]
+[Thread 0x7eedfbeb60 (LWP 2483402) exited]
+[Thread 0x7eee7ceb60 (LWP 2483401) exited]
+[Thread 0x7eef7eeb60 (LWP 2483399) exited]
+[Thread 0x7ecf7eeb60 (LWP 2483406) exited]
+[Thread 0x7ecefdeb60 (LWP 2483407) exited]
+[Thread 0x7ecdfbeb60 (LWP 2483409) exited]
+[Thread 0x7ece7ceb60 (LWP 2483408) exited]
+[Thread 0x7ecfffeb60 (LWP 2483405) exited]
+[Thread 0x7eecf9eb60 (LWP 2483404) exited]
+[Thread 0x7ecd7aeb60 (LWP 2483410) exited]
+EBUG[0m writeAudio #3: srcPts=0:00:20.494240361 anchor(video)=0:00:20.415459920 filePts=0:00:00.069659863
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #4: srcPts=0:00:20.517460316 anchor(video)=0:00:20.415459920 filePts=0:00:00.092879818
+[1;37m[DVR][0m [36mDEBUG[0m Subtitle Anchor set: srcPts=0:00:21.608192206
+[1;37m[DVR][0m [36mDEBUG[0m Dropped duplicate/overlapping subtitle frame ch2000: pts=0:00:08.899724285 (must be >= 0:00:09.033257545)
+[1;37m[DVR][0m [37mINFO[0m [TIMING] video/audio/subtitle flush (1646 frames): 111ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING] startEventRecording total: 134ms
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[DVR][0m [37mINFO[0m [95mStopping [EVENT]: /mnt/udisk/VideoFiles/Event/PUA/E_260606_115554_CH4_FR30_A.mp4[0m
+
+[1;37m[DVR][0m [1;36m=== Recording Statistics ===[0m
+[1;37m[DVR][0m [37mINFO[0m Mode: EVENT | Path: [48;5;58m/mnt/udisk/VideoFiles/Event/PUA/E_260606_115554_CH4_FR30_A.mp4[0m
+[1;37m[DVR][0m [37mINFO[0m Resolution: 1920x1080 | Expected: 10s+20s @ 30fps = 300+600 = 900 frames/channel | Actual Duration: 20.1s
+[1;36mChannel Statistics[0m
+=============================================================================
+Channel      FPS          Received     Processed    Dropped      Success     
+-----------------------------------------------------------------------------
+Ch0          30           889          889          0            100.0%      
+Ch1          30           888          888          0            100.0%      
+Ch2          30           888          888          0            100.0%      
+Ch3          30           887          887          0            100.0%      
+SUB          30           29           28           1            96.6%       
+AUDIO        -            1296         1296         0            100.0%      
+TOTAL        -            3581         3580         1            100.0%      
+
+[1;37m[DVR][0m [37mINFO[0m stop() [EVENT] audio EOS sent (+100ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [EVENT] audio flush wait done (+150ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [EVENT] video EOS sent: yes (+150ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [EVENT] EOS received: type=EOS (+183ms)
+[1;37m[DVR][0m [37mINFO[0m stop() NULL complete at 0ms (+184ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [EVENT] NULL complete (+184ms)
+[1;37m[DVR][0m [37mINFO[0m [95mRecording stopped [EVENT] (total: 185ms)[0m
+[1;37m[DVR][0m [1;32mOK[0m [95mEvent recording stopped[0m
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found[Detaching after vfork from child process 2483647]
+[Detaching after vfork from child process 2483648]
+[New Thread 0x7ecd7aeb60 (LWP 2483693)]
+[Detaching after vfork from child process 2483694]
+[Detaching after vfork from child process 2483696]
+[Thread 0x7ecd7aeb60 (LWP 2483693) exited]
+
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m File rotation needed
+[1;37m[DVR][0m [37mINFO[0m Rotating recording files
+[1;37m[DVR][0m [37mINFO[0m Stopping [NORMAL]: /mnt/udisk/VideoFiles/Normal/N_260606_115526_#0_CH4_FR30_A.mp4
+
+[1;37m[DVR][0m [1;36m=== Recording Statistics ===[0m
+[1;37m[DVR][0m [37mINFO[0m Mode: NORMAL | Path: [48;5;58m/mnt/udisk/VideoFiles/Normal/N_260606_115526_#0_CH4_FR30_A.mp4[0m
+[1;37m[DVR][0m [37mINFO[0m Resolution: 1920x1080 | Expected: 60s @ 30fps = 1800 frames/channel | Actual Duration: 60.7s
+[1;36mChannel Statistics[0m
+=============================================================================
+Channel      FPS          Received     Processed    Dropped      Success     
+-----------------------------------------------------------------------------
+Ch0          30           1774         1774         0            100.0%      
+Ch1          30           1774         1774         0            100.0%      
+Ch2          30           1772         1772         0            100.0%      
+Ch3          30           1774         1774         0            100.0%      
+SUB          30           59           59           0            100.0%      
+AUDIO        -            2584         2584         0            100.0%      
+TOTAL        -            7153         7153         0            100.0%      
+
+[1;37m[DVR][0m [37mINFO[0m stop() [NORMAL] audio EOS sent (+100ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [NORMAL] audio flush wait done (+150ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [NORMAL] video EOS sent: yes (+150ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [NORMAL] EOS received: type=EOS (+180ms)
+[1;37m[DVR][0m [37mINFO[0m stop() NULL complete at 0ms (+184ms)
+[1;37m[DVR][0m [37mINFO[0m stop() [NORMAL] NULL complete (+184ms)
+[1;37m[DVR][0m [37mINFO[0m Recording stopped [NORMAL] (total: 184ms)
+[1;37m[DVR][0m [37mINFO[0m Split mode: 1 files (4 channels per file)
+[1;37m[DVR][0m [37mINFO[0m Starting NORMAL recording
+
+[1;37m[GST][0m [1;36m=== FileWriter Pipeline ===[0m
+[32mmp4mux name=mux fragment-duration=1000 ! filesink name=fsink location=/mnt/udisk/VideoFiles/Normal/N_260606_115627_#0_CH4_FR30_A.mp4 
+appsrc name=dvr_source0 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_0 
+appsrc name=dvr_source1 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_1 
+appsrc name=dvr_source2 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_2 
+appsrc name=dvr_source3 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_3 
+appsrc name=dvr_source1000 is-live=true do-timestamp=false format=time caps="text/x-raw,format=utf8" ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.subtitle_0 
+appsrc name=dvr_audio_src is-live=true do-timestamp=false format=time caps=audio/mpeg,mpegversion=4,stream-format=adts ! queue max-size-buffers=200 max-size-time=0 max-size-bytes=0 flush-on-eos=true ! mux.audio_0 
+[0m
+[1;37m[DVR][0m [37mINFO[0m [TIMING][NORMAL] gst_parse_launch: 1ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING][NORMAL] parser wait: 0ms (ready=yes)
+[1;37m[DVR][0m [37mINFO[0m Recording started [NORMAL]: /mnt/udisk/VideoFiles/Normal/N_260606_115627_#0_CH4_FR30_A.mp4
+[1;37m[DVR][0m [37mINFO[0m   Duration: 60s | Channels: Ch0:30fps, Ch1:30fps, Ch2:30fps, Ch3:30fps | Audio: yes
+[1[Detaching after vfork from child process 2483742]
+[Detaching after vfork from child process 2483743]
+[New Thread 0x7ecd7aeb60 (LWP 2483790)]
+[Detaching after vfork from child process 2483791]
+[Detaching after vfork from child process 2483793]
+[Thread 0x7ecd7aeb60 (LWP 2483790) exited]
+[Detaching after vfork from child process 2483841]
+[Detaching after vfork from child process 2483844]
+[Thread 0x7eefffeb60 (LWP 2483398) exited]
+[New Thread 0x7eefffeb60 (LWP 2483890)]
+[Detaching after vfork from child process 2483891]
+[Detaching after vfork from child process 2483893]
+[Thread 0x7eefffeb60 (LWP 2483890) exited]
+[New Thread 0x7eefffeb60 (LWP 2483946)]
+[New Thread 0x7ecd7aeb60 (LWP 2483947)]
+[New Thread 0x7ece7ceb60 (LWP 2483948)]
+[New Thread 0x7ecdfbeb60 (LWP 2483949)]
+[New Thread 0x7eef7eeb60 (LWP 2483950)]
+[New Thread 0x7eeefdeb60 (LWP 2483951)]
+[New Thread 0x7eee7ceb60 (LWP 2483952)]
+[New Thread 0x7eedfbeb60 (LWP 2483953)]
+[New Thread 0x7eed7aeb60 (LWP 2483954)]
+[New Thread 0x7eecf9eb60 (LWP 2483955)]
+[New Thread 0x7ecfffeb60 (LWP 2483956)]
+[New Thread 0x7ecf7eeb60 (LWP 2483957)]
+[New Thread 0x7ecefdeb60 (LWP 2483958)]
+;37m[DVR][0m [36mDEBUG[0m Anchor set: ch2 srcPts=0:01:02.014905683
+[1;37m[DVR][0m [36mDEBUG[0m Audio Anchor set: srcPts=0:01:01.988299318
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #0: srcPts=0:01:01.988299318 anchor(video)=0:01:02.014905683 filePts=0:00:00.000000000
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #1: srcPts=0:01:02.011519273 anchor(video)=0:01:02.014905683 filePts=0:00:00.023219955
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #2: srcPts=0:01:02.034739228 anchor(video)=0:01:02.014905683 filePts=0:00:00.046439910
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #3: srcPts=0:01:02.057959182 anchor(video)=0:01:02.014905683 filePts=0:00:00.069659864
+[1;37m[DVR][0m [36mDEBUG[0m writeAudio #4: srcPts=0:01:02.081179137 anchor(video)=0:01:02.014905683 filePts=0:00:00.092879819
+[1;37m[DVR][0m [36mDEBUG[0m Subtitle Anchor set: srcPts=0:01:02.207670304
+[1;37m[DVR][0m [36mDEBUG[0m Dropped duplicate/overlapping subtitle frame ch1000: pts=0:00:00.633188826 (must be >= 0:00:00.900000000)
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Checking Storage
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[IO][0m [93mWARN[0m No suitable input devices found
+[1;37m[DVR][0m [37mINFO[0m Dr.Safe PUA Activated
+
+[1;37m[GST][0m [1;36m=== FileWriter Pipeline ===[0m
+[32mmp4mux name=mux fragment-duration=1000 ! filesink name=fsink location=/mnt/udisk/VideoFiles/Event/PUA/E_260606_115648_CH4_FR30_A.mp4 
+appsrc name=dvr_source0 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_0 
+appsrc name=dvr_source1 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_1 
+appsrc name=dvr_source2 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_2 
+appsrc name=dvr_source3 is-live=true do-timestamp=false format=time ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.video_3 
+appsrc name=dvr_source2000 is-live=true do-timestamp=false format=time caps="text/x-raw,format=utf8" ! queue max-size-buffers=120 max-size-time=0 max-size-bytes=0 ! mux.subtitle_0 
+appsrc name=dvr_audio_src is-live=true do-timestamp=false format=time caps=audio/mpeg,mpegversion=4,stream-format=adts ! queue max-size-buffers=200 max-size-time=0 max-size-bytes=0 flush-on-eos=true ! mux.audio_0 
+[0m
+[1;37m[DVR][0m [37mINFO[0m [TIMING][EVENT] gst_parse_launch: 3ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING] initialize: 3ms
+[1;37m[DVR][0m [37mINFO[0m [TIMING][EVENT] parser wait: 0ms (ready=yes)
+[1;37m[DVR][0m [37mINFO[0m [95mRecording started [EVENT]: /mnt/udisk/VideoFiles/Event/PUA/E_260606_115648_CH4_FR30_A.mp4[0m
+[1[New Thread 0x7eccf9eb60 (LWP 2483959)]
+[Detaching after vfork from child process 2484008]
+[Detaching after vfork from child process 2484010]
+[New Thread 0x7ec3ffeb60 (LWP 2484011)]
+[Detaching after vfork from child process 2484012]
+[Detaching after vfork from child process 2484014]
+[Thread 0x7ec3ffeb60 (LWP 2484011) exited]

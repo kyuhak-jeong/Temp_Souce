@@ -1,0 +1,109 @@
+{
+    "CameraMonitoringSystem": {
+        "AVM": {
+            "activation": [
+                false,
+                true,
+                false,
+                true,
+                false
+            ],
+            "view_setting": [
+                1,
+                1,
+                0,
+                1,
+                1
+            ],
+            "vcam": [
+                [
+                    0.0,
+                    -4.0,
+                    2.5,
+                    70.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    4.199999809265137,
+                    1.0,
+                    75.0,
+                    0.0,
+                    180.0
+                ],
+                [
+                    0.0,
+                    4.0,
+                    2.5,
+                    70.0,
+                    0.0,
+                    180.0
+                ],
+                [
+                    -1.0,
+                    4.199999809265137,
+                    1.0,
+                    75.0,
+                    0.0,
+                    180.0
+                ]
+            ],
+            "rcam": [
+                [
+                    320,
+                    320,
+                    180,
+                    180
+                ],
+                [
+                    320,
+                    320,
+                    180,
+                    180
+                ],
+                [
+                    320,
+                    320,
+                    180,
+                    180
+                ],
+                [
+                    320,
+                    320,
+                    180,
+                    180
+                ]
+            ]
+        },
+        "DVR": {
+            "recording_time": 60,
+            "recording_channel": 0,
+            "recording_fps_avm": 30,
+            "recording_fps_internal": 30,
+            "audio_enabled": false
+        },
+        "System": {
+            "language": 0,
+            "system_display_timeout": 0,
+            "system_time": {
+                "year": 2026,
+                "month": 4,
+                "day": 15,
+                "hour": 10,
+                "minute": 41,
+                "second": 6,
+                "auto_time": true
+            },
+            "calib_vehicle_idx": 0,
+            "calib_pw": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    }
+}
