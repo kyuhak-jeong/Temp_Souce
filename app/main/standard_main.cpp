@@ -686,6 +686,24 @@ static void register_signal(void)
 	void * SerialCommunicationTask( void * pArg )
 	{
 		#if (1) // Timer for Event Recording
+					auto s_last_pua_time = std::chrono::steady_clock::now();
+
+			while (APP::app_running)
+			{
+				auto now     = std::chrono::steady_clock::now();
+				auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - s_last_pua_time).count();
+
+				if (elapsed >= 1)
+				{
+					s_last_pua_time = now;
+					DrSafePUAisActivated();
+				}
+
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+			}
+
+			return nullptr;
+		#else
 			std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 			std::uniform_int_distribution<int> dist(30, 60); // 30초 ~ 60초(1분)
 

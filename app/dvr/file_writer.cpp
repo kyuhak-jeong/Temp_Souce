@@ -223,21 +223,30 @@ void FileWriter::stop()
         printStatistics();
     }
 
-    std::unique_lock<std::shared_mutex> lock(m_rwMutex);
+    GstElement* pipelineToDestroy = nullptr;
+    std::map<int, GstElement*> appsrcMapToDestroy;
+
+    {
+        std::unique_lock<std::shared_mutex> lock(m_rwMutex);
+        pipelineToDestroy = m_pipeline;
+        m_pipeline = nullptr;
+        appsrcMapToDestroy = std::move(m_appsrcMap);
+        m_appsrcMap.clear();
+    }
 
     // ── Send EOS so the muxer finalises the file cleanly ──────────────────
-    if (m_pipeline != nullptr)
+    if (pipelineToDestroy != nullptr)
     {
         GstState current, pending;
-        GstStateChangeReturn stateRet = gst_element_get_state(m_pipeline, &current, &pending, 0);
+        GstStateChangeReturn stateRet = gst_element_get_state(pipelineToDestroy, &current, &pending, 0);
         bool pipelinePlaying = (stateRet != GST_STATE_CHANGE_FAILURE) && (current == GST_STATE_PLAYING);
 
         if (pipelinePlaying == true && wasActive)
         {
             bool eosSent = false;
 
-            auto audioIt = m_appsrcMap.find(AUDIO_CH_ID);
-            if (audioIt != m_appsrcMap.end() && audioIt->second != nullptr)
+            auto audioIt = appsrcMapToDestroy.find(AUDIO_CH_ID);
+            if (audioIt != appsrcMapToDestroy.end() && audioIt->second != nullptr)
             {
                 GstFlowReturn ret = gst_app_src_end_of_stream(GST_APP_SRC(audioIt->second));
                 if (ret == GST_FLOW_OK)
@@ -249,7 +258,7 @@ void FileWriter::stop()
                 LOG_DVR_INFOF("stop() [%s] audio flush wait done (+%lldms)", getModeName(), (long long)elapsed_ms());
             }
 
-            for (auto& p : m_appsrcMap)
+            for (auto& p : appsrcMapToDestroy)
             {
                 if (p.first == AUDIO_CH_ID) continue;
                 if (p.second != nullptr)
@@ -263,7 +272,7 @@ void FileWriter::stop()
 
             if (eosSent == true)
             {
-                GstBus* bus = gst_element_get_bus(m_pipeline);
+                GstBus* bus = gst_element_get_bus(pipelineToDestroy);
                 if (bus != nullptr)
                 {
                     GstMessage* msg = gst_bus_timed_pop_filtered(bus, 5 * GST_SECOND,
@@ -294,7 +303,7 @@ void FileWriter::stop()
 
                         LOG_DVR_WARNINGF("stop() [%s] flushing pipeline to unblock stuck queue (+%lldms)",
                                          getModeName(), (long long)elapsed_ms());
-                        gst_element_send_event(m_pipeline, gst_event_new_flush_start());
+                        gst_element_send_event(pipelineToDestroy, gst_event_new_flush_start());
                         std::this_thread::sleep_for(std::chrono::milliseconds(150));
                     }
                     gst_object_unref(bus);
@@ -303,12 +312,12 @@ void FileWriter::stop()
         }
 
         // Always set state to NULL first (correct order)
-        gst_element_set_state(m_pipeline, GST_STATE_NULL);
+        gst_element_set_state(pipelineToDestroy, GST_STATE_NULL);
 
         #if (1) // for debug pipeline, state check every 500ms which element was happened blocking
             for (int i = 0; i < 20; i++)  // max 10
             {
-                GstStateChangeReturn sr = gst_element_get_state(m_pipeline, nullptr, nullptr, 500 * GST_MSECOND);
+                GstStateChangeReturn sr = gst_element_get_state(pipelineToDestroy, nullptr, nullptr, 500 * GST_MSECOND);
 
                 if (sr == GST_STATE_CHANGE_SUCCESS)
                 {
@@ -316,7 +325,7 @@ void FileWriter::stop()
                     break;
                 }
 
-                GstIterator* it = gst_bin_iterate_elements(GST_BIN(m_pipeline));
+                GstIterator* it = gst_bin_iterate_elements(GST_BIN(pipelineToDestroy));
                 GValue item = G_VALUE_INIT;
                 while (gst_iterator_next(it, &item) == GST_ITERATOR_OK)
                 {
@@ -332,18 +341,17 @@ void FileWriter::stop()
             }
         #endif
 
-        gst_element_get_state(m_pipeline, nullptr, nullptr, 2 * GST_SECOND);
+        gst_element_get_state(pipelineToDestroy, nullptr, nullptr, 2 * GST_SECOND);
         LOG_DVR_INFOF("stop() [%s] NULL complete (+%lldms)", getModeName(), (long long)elapsed_ms());
 
         // Drop the extra refs from gst_bin_get_by_name() BEFORE destroying the pipeline.
-        for (auto& p : m_appsrcMap)
+        for (auto& p : appsrcMapToDestroy)
         {
             if (p.second != nullptr) { gst_object_unref(p.second); p.second = nullptr; }
         }
-        m_appsrcMap.clear();
+        appsrcMapToDestroy.clear();
 
-        gst_object_unref(m_pipeline);
-        m_pipeline = nullptr;
+        gst_object_unref(pipelineToDestroy);
     }
  
     if (wasActive)

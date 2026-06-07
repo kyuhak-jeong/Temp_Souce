@@ -1073,30 +1073,22 @@ long DvrManager::getFolderSize(const std::string& path)
         return 0;
     }
     
-    std::array<char, 128> buffer;
-    std::string result;
-    std::string cmd = "du -s " + path + " 2>/dev/null";
-    
-    FILE* pipe_raw = popen(cmd.c_str(), "r");
-    if (pipe_raw == nullptr)
+    long totalSize = 0;
+    try
     {
-        return 0;
+        for (const auto& entry : std::filesystem::recursive_directory_iterator(path, std::filesystem::directory_options::skip_permission_denied))
+        {
+            if (entry.is_regular_file() == true)
+            {
+                totalSize += std::filesystem::file_size(entry.path());
+            }
+        }
     }
-    
-    auto deleter = [](FILE* fp) { if (fp) pclose(fp); };
-    std::unique_ptr<FILE, decltype(deleter)> pipe(pipe_raw, deleter);
-    
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
+    catch (const std::exception& e)
     {
-        result += buffer.data();
+        LOG_DVR_WARNINGF("Exception in getFolderSize: %s", e.what());
     }
-    
-    std::istringstream ss(result);
-    long size = 0;
-    std::string pathRead;
-    ss >> size >> pathRead;
-    
-    return size * 1000;
+    return totalSize;
 }
 
 
