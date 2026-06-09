@@ -1,6 +1,7 @@
 #ifndef __APP_VARS_H__
 #define __APP_VARS_H__
 
+#include <mutex>
 #include "constants.h"
 #include "logger.h"
 #include "ui_core.h"
@@ -83,6 +84,7 @@ namespace APP
 
 
     extern std::array<std::vector<AI::BoundingBox>, MAX_BUFFER_NUM> detected_objs;
+    extern std::mutex detected_objs_mutex;
 
     extern std::string video_path;
     extern std::string video_file_name;

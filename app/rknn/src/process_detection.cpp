@@ -5,6 +5,7 @@
 #include "rga.h"
 
 #include "process_detection.hpp"
+#include <mutex>
 
 #define DEBUG 0
 
@@ -142,7 +143,7 @@ cleanup:
     if (resized_buf != nullptr) { free(resized_buf); resized_buf = nullptr; }
 }
 
-void process_callback_data_for_inference(uint8_t* image_data, int camIdx)
+void process_callback_data_for_inference(uint8_t* image_data, size_t size, int camIdx)
 {
     if (m_pDetection == nullptr) return;
 
@@ -150,7 +151,7 @@ void process_callback_data_for_inference(uint8_t* image_data, int camIdx)
                          ? m_pDetection->m_rknn_config.model_size_a
                          : m_pDetection->m_rknn_config.model_size_b;
 
-    m_pDetection->set_infer(image_data, camIdx);
+    m_pDetection->set_infer(image_data, size, camIdx);
     auto objects = m_pDetection->get_infer(camIdx);
 
     // -- Coordinate scale factors (model space → original image pixels) -------
@@ -162,7 +163,7 @@ void process_callback_data_for_inference(uint8_t* image_data, int camIdx)
     const float inv_img_h = 1.0f   / static_cast<float>(IMG_HEIGHT);
 
     // -- Build output vector --------------------------------------------------
-    APP::detected_objs[camIdx].clear();
+    std::vector<APP::AI::BoundingBox> local_objs;
 
     for (const auto& object : objects)
     {
@@ -178,12 +179,17 @@ void process_callback_data_for_inference(uint8_t* image_data, int camIdx)
         const float nw = (           object.box.width  * scale_x) * inv_img_w;
         const float nh = (           object.box.height * scale_y) * inv_img_h;
 
-        APP::detected_objs[camIdx].emplace_back(nx, ny, nw, nh,
+        local_objs.emplace_back(nx, ny, nw, nh,
             object.class_id, cls->domainId, cls->color, cls->label, object.prob);
 
         #if DEBUG
             printf("[AI Detector] cam=%d class=%d → domain=%d(%s) conf=%.2f  norm(%.3f,%.3f,%.3f,%.3f)\n",
                camIdx, object.class_id, cls->domainId, cls->label, object.prob, nx, ny, nw, nh);
         #endif
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+        APP::detected_objs[camIdx] = std::move(local_objs);
     }
 }

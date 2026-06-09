@@ -55,7 +55,7 @@ public:
 
     ~DetectionApp();
 
-    void set_infer(ImagePtr image_data, size_t num);
+    void set_infer(ImagePtr image_data, size_t size, size_t num);
     Objects get_infer(size_t num);
 
     input_size get_input_shape(size_t num=0);

@@ -9,6 +9,7 @@
 #include "app_vars.h"
 #include "io_platform.h"
 #include "logger.h"
+#include <mutex>
 #include <gst_camera_process.hpp>
 
 #ifdef USE_RKNN
@@ -235,7 +236,10 @@ static GstFlowReturn new_mod_sample(GstElement* sink, GstData* data)
 
     if (file_viewer_active == true || input_active == false)
     {
-        APP::detected_objs[pidx].clear();
+        {
+            std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+            APP::detected_objs[pidx].clear();
+        }
         discardSample(sink);
         return GST_FLOW_OK;
     }
@@ -253,7 +257,7 @@ static GstFlowReturn new_mod_sample(GstElement* sink, GstData* data)
     if (gst_buffer_map(buffer, &info, GST_MAP_READ) == TRUE)
     {
         #ifdef USE_RKNN
-            process_callback_data_for_inference(info.data, pidx);
+            process_callback_data_for_inference(info.data, info.size, pidx);
         #endif
         gst_buffer_unmap(buffer, &info);
     }
@@ -800,7 +804,13 @@ static void renderPlainMainScreen()
             APP::main_canvas->drawText(lbl, APP::UI::Vec2(x + 8.0f, y + 8.0f), pLblText);
 
             // Detection boxes — BoundingBox: x,y,width,height normalised; color; label
-            for (const auto& obj : APP::detected_objs[cam])
+            std::vector<APP::AI::BoundingBox> current_objs;
+            {
+                std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+                current_objs = APP::detected_objs[cam];
+            }
+
+            for (const auto& obj : current_objs)
             {
                 const float bx = x + obj.x * cW;
                 const float by = y + obj.y * cH;

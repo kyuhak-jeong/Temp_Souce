@@ -3,6 +3,7 @@
 #include "logger.h"
 #include "ui_locale.h"
 #include <algorithm>
+#include <mutex>
 
 namespace APP
 {
@@ -459,7 +460,7 @@ void AppAICam::updateSimDetections(float deltaTime)
 
     for (int cam = 0; cam < AI_CAM_NUM; cam++)
     {
-        APP::detected_objs[cam].clear();
+        std::vector<AI::BoundingBox> local_objs;
 
         for (int o = 0; o < SIM_OBJ_PER_CAM; o++)
         {
@@ -480,7 +481,12 @@ void AppAICam::updateSimDetections(float deltaTime)
             bb.color      = obj.getFgColor();
             bb.label      = simLabels[labelIdx];
             bb.confidence = 0.75f + static_cast<float>(o) * 0.1f;
-            APP::detected_objs[cam].push_back(bb);
+            local_objs.push_back(bb);
+        }
+
+        {
+            std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+            APP::detected_objs[cam] = std::move(local_objs);
         }
     }
 }
@@ -579,7 +585,13 @@ void AppAICam::updateCameraCellData()
 
         // Run overlap filter; updateDetections colours each bbox, sets the cell
         // warning overlay, and returns the worst ROI level hit (-1 = none).
-        int worstLevel = m_cameraCells[camIdx]->updateDetections(APP::detected_objs[camIdx], roiLevelsNorm);
+        std::vector<AI::BoundingBox> current_objs;
+        {
+            std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+            current_objs = APP::detected_objs[camIdx];
+        }
+
+        int worstLevel = m_cameraCells[camIdx]->updateDetections(current_objs, roiLevelsNorm);
         APP::aicam_warning_level[camIdx] = (worstLevel >= 0) ? 1 : 0;
     }
 }

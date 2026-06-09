@@ -19,6 +19,6 @@
 
 void init_process_detection();
 void deinit_process_detection();
-void process_callback_data_for_inference(uint8_t* image_data, int camIdx);
+void process_callback_data_for_inference(uint8_t* image_data, size_t size, int camIdx);
 
 #endif

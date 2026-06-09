@@ -63,6 +63,7 @@ namespace APP
     #endif
 
     std::array<std::vector<AI::BoundingBox>, MAX_BUFFER_NUM> detected_objs;
+    std::mutex detected_objs_mutex;
 
     std::string video_path        = std::string(DEFAULT_VIDEO_PATH);
     std::string video_file_name   = std::string(DEFAULT_VIDEO_FILE);

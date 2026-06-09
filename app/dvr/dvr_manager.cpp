@@ -1076,11 +1076,26 @@ long DvrManager::getFolderSize(const std::string& path)
     long totalSize = 0;
     try
     {
-        for (const auto& entry : std::filesystem::recursive_directory_iterator(path, std::filesystem::directory_options::skip_permission_denied))
+        for (const auto& entry : std::filesystem::directory_iterator(path, std::filesystem::directory_options::skip_permission_denied))
         {
-            if (entry.is_regular_file() == true)
+            try
             {
-                totalSize += std::filesystem::file_size(entry.path());
+                if (entry.is_symlink())
+                {
+                    continue;
+                }
+                if (entry.is_regular_file() == true)
+                {
+                    totalSize += std::filesystem::file_size(entry.path());
+                }
+                else if (entry.is_directory() == true)
+                {
+                    totalSize += getFolderSize(entry.path().string());
+                }
+            }
+            catch (const std::exception& e)
+            {
+                // Ignore errors for individual entries (e.g. files deleted or permissions)
             }
         }
     }
@@ -1092,6 +1107,48 @@ long DvrManager::getFolderSize(const std::string& path)
 }
 
 
+struct FileEntry
+{
+    std::filesystem::path path;
+    std::filesystem::file_time_type writeTime;
+};
+
+static void collectFilesRecursive(const std::filesystem::path& p, std::vector<FileEntry>& files)
+{
+    try
+    {
+        if (std::filesystem::exists(p) == false) return;
+        for (const auto& entry : std::filesystem::directory_iterator(p, std::filesystem::directory_options::skip_permission_denied))
+        {
+            try
+            {
+                if (entry.is_symlink())
+                {
+                    continue;
+                }
+                if (entry.is_regular_file() == true)
+                {
+                    std::filesystem::path filePath = entry.path();
+                    std::filesystem::file_time_type wTime = std::filesystem::last_write_time(filePath);
+                    files.push_back({filePath, wTime});
+                }
+                else if (entry.is_directory() == true)
+                {
+                    collectFilesRecursive(entry.path(), files);
+                }
+            }
+            catch (const std::exception& e)
+            {
+                // Ignore individual entry errors
+            }
+        }
+    }
+    catch (const std::exception& e)
+    {
+        // Ignore directory access errors
+    }
+}
+
 std::string DvrManager::cleanOldestFile(const std::string& path)
 {
     std::stringstream ret;
@@ -1102,14 +1159,8 @@ std::string DvrManager::cleanOldestFile(const std::string& path)
         return ret.str();
     }
     
-    std::vector<std::filesystem::path> files;
-    
-    // Use recursive_directory_iterator to find files in all subdirectories
-    for (const auto& e : std::filesystem::recursive_directory_iterator(path))
-    {
-        if (e.is_regular_file() == true)
-            files.push_back(e.path());
-    }
+    std::vector<FileEntry> files;
+    collectFilesRecursive(path, files);
     
     if (files.empty() == true)
     {
@@ -1117,25 +1168,39 @@ std::string DvrManager::cleanOldestFile(const std::string& path)
         return ret.str();
     }
     
-    std::sort(files.begin(), files.end(), [](const auto& a, const auto& b)
+    std::sort(files.begin(), files.end(), [](const FileEntry& a, const FileEntry& b)
     {
-        return std::filesystem::last_write_time(a) < std::filesystem::last_write_time(b);
+        return a.writeTime < b.writeTime;
     });
     
-    const auto& oldest = files.front();
+    const auto& oldest = files.front().path;
     std::filesystem::path parentDir = oldest.parent_path();
-    std::filesystem::remove(oldest);
-    sync();
     
-    ret << " Oldest file deleted: " << oldest << "\n";
-
-    // Clean up empty subdirectories left behind (e.g. Event/MANUAL/ with no files)
-    if (parentDir != std::filesystem::path(path) &&
-        std::filesystem::exists(parentDir) == true &&
-        std::filesystem::is_empty(parentDir) == true)
+    try
     {
-        std::filesystem::remove(parentDir);
-        ret << " Empty directory removed: " << parentDir << "\n";
+        std::filesystem::remove(oldest);
+        sync();
+        ret << " Oldest file deleted: " << oldest << "\n";
+    }
+    catch (const std::exception& e)
+    {
+        ret << " Failed to remove oldest file: " << oldest << " (" << e.what() << ")\n";
+    }
+    
+    // Clean up empty subdirectories left behind (e.g. Event/MANUAL/ with no files)
+    try
+    {
+        if (parentDir != std::filesystem::path(path) &&
+            std::filesystem::exists(parentDir) == true &&
+            std::filesystem::is_empty(parentDir) == true)
+        {
+            std::filesystem::remove(parentDir);
+            ret << " Empty directory removed: " << parentDir << "\n";
+        }
+    }
+    catch (const std::exception& e)
+    {
+        // Ignore empty directory removal errors
     }
 
     return ret.str();

@@ -9,6 +9,7 @@
 #include "app_vars.h"
 #include "io_platform.h"
 #include "logger.h"
+#include <mutex>
 #include "svm_ui_process.hpp"
 #include "app_svm.h"
 #include "svmContext.hpp"
@@ -302,7 +303,13 @@ static void SvmRenderCallback()
         {
             // printf("detected %ld in cam %d\n", APP::detected_objs[camIdx].size(), camIdx);
 
-            for (const auto& bb : APP::detected_objs[camIdx])
+            std::vector<APP::AI::BoundingBox> current_objs;
+            {
+                std::lock_guard<std::mutex> lock(APP::detected_objs_mutex);
+                current_objs = APP::detected_objs[camIdx];
+            }
+
+            for (const auto& bb : current_objs)
             {
                 if (bb.classId > 5) continue; // person, bicycle, motorcycle, car, bus, truck
                 od_objs.emplace_back(camIdx, bb.classId,

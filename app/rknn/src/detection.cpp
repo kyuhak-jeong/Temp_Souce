@@ -238,16 +238,24 @@ void DetectionApp::InferThread(size_t thread_num, int frame_rate)
 }
 
 
-void DetectionApp::set_infer(ImagePtr image_data, size_t num)
+void DetectionApp::set_infer(ImagePtr image_data, size_t size, size_t num)
 {
     // The image_data pointer is directly stored in m_images
     if (m_is_sync) 
     {
+        if (num >= m_asyncs.size() || num >= m_detectors.size()) {
+            LOG_DVR_ERRORF("[Detection] Camera index %zu out of bounds in sync mode", num);
+            return;
+        }
         m_asyncs[num] = std::async(std::launch::async, &DetectionApp::InferAsync, 
                                    this, std::ref(*m_detectors[num]), image_data);
     }
     else
     {
+        if (num >= m_images.size() || num >= m_detectors.size() || num >= m_mutexes.size() || num >= m_image_init.size()) {
+            LOG_DVR_ERRORF("[Detection] Camera index %zu out of bounds in async mode", num);
+            return;
+        }
         auto input_shape = m_detectors[num]->getInputShape();
         size_t input_size = input_shape.width * input_shape.height * input_shape.features;
 
@@ -259,14 +267,15 @@ void DetectionApp::set_infer(ImagePtr image_data, size_t num)
             m_images[num].second.resize(input_size);
         }
         // Safely copy image data in set_infer; verify buffer size
-            if (image_data == nullptr) {
-                LOG_DVR_ERROR("[Detection] Null image_data pointer in set_infer");
-            } else {
-                size_t actual_size = input_size; // assuming full size expected
-                // If the incoming size is smaller, we copy only what we have to avoid overflow
-                // Note: image_data comes from camera callback; its actual length should be input_size
-                std::memcpy(m_images[num].second.data(), image_data, actual_size);
+        if (image_data == nullptr) {
+            LOG_DVR_ERROR("[Detection] Null image_data pointer in set_infer");
+        } else {
+            size_t copy_size = std::min(input_size, size);
+            std::memcpy(m_images[num].second.data(), image_data, copy_size);
+            if (copy_size < input_size) {
+                std::memset(m_images[num].second.data() + copy_size, 0, input_size - copy_size);
             }
+        }
     }
 }
 
